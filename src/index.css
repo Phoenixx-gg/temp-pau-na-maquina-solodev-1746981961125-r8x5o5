@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bangers&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-red: #FF0040;
+  --radioactive-yellow: #FAFF00;
+  --deep-black: #121212;
+  --electric-blue: #00FFFF;
+  --toxic-green: #39FF14;
+}
+
+body {
+  background-color: var(--deep-black);
+  font-family: 'VT323', monospace;
+  color: white;
+  overflow-x: hidden;
+}
+
+@layer components {
+  .neon-text {
+    text-shadow: 0 0 5px var(--neon-red), 
+                 0 0 10px var(--neon-red), 
+                 0 0 15px var(--neon-red);
+  }
+  
+  .yellow-neon-text {
+    text-shadow: 0 0 5px var(--radioactive-yellow), 
+                 0 0 10px var(--radioactive-yellow), 
+                 0 0 15px var(--radioactive-yellow);
+  }
+  
+  .crazy-button {
+    @apply font-['Bebas_Neue'] bg-[#FF0040] hover:bg-[#FF3060] text-white py-3 px-6 rounded-md 
+           transition-all duration-300 transform hover:scale-105 hover:rotate-1
+           shadow-[0_0_15px_rgba(255,0,64,0.7)];
+  }
+  
+  .crazy-button:hover {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  .tool-card {
+    @apply bg-[#1A1A1A] p-6 rounded-lg border-2 border-[#FF0040]
+           transition-all duration-300 hover:border-[#FAFF00]
+           hover:shadow-[0_0_20px_rgba(250,255,0,0.5)]
+           transform hover:scale-[1.03] hover:-rotate-1;
+  }
+  
+  .navbar-link {
+    @apply text-white text-xl hover:text-[#FAFF00] transition-all duration-300
+           hover:scale-110 relative overflow-hidden;
+  }
+  
+  .navbar-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-[2px] bg-[#FAFF00]
+           transition-all duration-300;
+  }
+  
+  .navbar-link:hover::after {
+    @apply w-full;
+  }
+
+  .form-input {
+    @apply bg-[#2A2A2A] text-white border-2 border-[#FF0040] rounded-md
+           p-3 w-full focus:outline-none focus:border-[#FAFF00]
+           focus:shadow-[0_0_10px_rgba(250,255,0,0.3)];
+  }
+  
+  .form-label {
+    @apply text-xl mb-2 block font-['VT323'] text-[#FAFF00];
+  }
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-5px, 0) rotate(-5deg); }
+  40% { transform: translate(5px, 0) rotate(5deg); }
+  60% { transform: translate(-3px, 0) rotate(-3deg); }
+  80% { transform: translate(3px, 0) rotate(3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+  }
+}
+
+.flicker-text {
+  animation: flicker 3s linear infinite;
+}
+
+.marquee {
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translate(100%, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+.rainbow-border {
+  position: relative;
+}
+
+.rainbow-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(45deg, 
+    #FF0040, 
+    #FAFF00, 
+    #39FF14, 
+    #00FFFF, 
+    #FF0040);
+  background-size: 400% 400%;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
